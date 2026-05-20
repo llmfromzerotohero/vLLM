@@ -1,0 +1,47 @@
+# Python
+# Byte-code files
+*.pyc
+__pycache__/
+*.pyd
+*.pyo
+
+# Output of compiling extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Unit test / coverage
+.coverage
+.tox/
+htmlcov/
+.nox/
+
+# Editors and IDEs
+.idea/  # For PyCharm and other JetBrains IDEs
+.vscode/ # For VS Code
+*.swp
+*.sublime-project
+*.sublime-workspace
+
+# Virtual environment
+venv/
+env/
+.env
+/bin/
+/include/
+/lib/
+/lib64/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Misc
+.pytest_cache
+pip-log.txt
+pip-delete-this-arg.txt

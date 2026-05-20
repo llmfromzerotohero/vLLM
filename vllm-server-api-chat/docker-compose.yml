@@ -1,0 +1,51 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: mlx-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - LLM_SERVER_PORT=8080
+      - APP_NAME=API FastAPI com OpenAI-like
+      - DEBUG=True
+      - SECRET_KEY=sua-chave-secreta-aqui-mude-antes-de-produzir
+      - DATABASE_URL=sqlite:///./app.db
+      - OPENAI_API_KEY=sk-...
+      - CORS_ORIGINS=["http://localhost:3000","http://localhost:8000","http://localhost:8080","http://localhost:5001","http://0.0.0.0:5001","*"]
+      - MODELO_LLM=Qwen/Qwen3-4B-Instruct-2507-FP8  # ✅ Atualizado para o modelo correto
+      - LLM_SERVER_BASE_URL=http://host.docker.internal:8080/v1  # ✅ Corrigido
+    extra_hosts:  # ✅ Essencial para Linux
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - backend-data:/app/backend
+    networks:
+      - mlx-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: mlx-frontend
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - BACKEND_URL=http://backend:8000
+    extra_hosts:  # ✅ Para consistência
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - backend
+    networks:
+      - mlx-network
+    restart: unless-stopped
+
+volumes:
+  backend-data:
+
+networks:
+  mlx-network:
+    driver: bridge
