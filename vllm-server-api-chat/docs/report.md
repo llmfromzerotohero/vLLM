@@ -4,8 +4,6 @@
 
 Este documento descreve a implementação de uma solução completa de IA Generativa utilizando containers Docker, composta por três componentes principais: um servidor de modelos LLM (vLLM), uma API backend (FastAPI) e uma interface frontend (Flask). A solução permite autenticação de usuários, persistência de chats e geração de respostas utilizando modelos de linguagem de código aberto.
 
----
-
 ## 🏗️ Arquitetura da Solução
 
 ### Diagrama de Componentes
@@ -59,8 +57,6 @@ sequenceDiagram
     Backend-->>Frontend: Retorna resposta + persiste no DB
     Frontend-->>User: Exibe resposta no chat
 ```
-
----
 
 ## 📦 Componentes da Solução
 
@@ -131,8 +127,6 @@ echo "🔍 Teste: curl http://localhost:$PORT/v1/models"
 - `--ulimit memlock=-1`: Sem limite de memória bloqueada
 - `-v ~/.cache/huggingface`: Cache de modelos persistente
 - `--gpu-memory-utilization 0.90`: Utilização de 90% da memória GPU
-
----
 
 ### 2. Backend API (FastAPI Container)
 
@@ -222,8 +216,6 @@ CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "800
 | `/health` | GET | Verificação de saúde |
 | `/docs` | GET | Documentação Swagger UI |
 
----
-
 ### 3. Frontend Interface (Flask Container)
 
 **Responsabilidade**: Interface web para interação com o usuário
@@ -307,8 +299,6 @@ CMD ["uv", "run", "python", "app/main.py"]
 | `/logout` | Logout do usuário |
 | `/api/stream` | Endpoint para streaming de respostas |
 
----
-
 ## 🔧 Arquivo de Orquestração: docker-compose.yml
 
 ```yaml
@@ -375,8 +365,6 @@ networks:
 | `volumes: backend-data` | Persistência do banco SQLite |
 | `depends_on: [backend]` | Garante que backend inicie antes do frontend |
 | `restart: unless-stopped` | Auto-reinício em falhas |
-
----
 
 ## 📝 Passo a Passo para Reprodução
 
@@ -837,8 +825,6 @@ echo "   3. Crie uma conta ou faça login"
 echo "   4. Comece a conversar com o modelo LLM!"
 ```
 
----
-
 ## 🧪 Testes e Validação
 
 ### Teste 1: Verificação do Servidor vLLM
@@ -902,8 +888,6 @@ curl -I http://localhost:5001/
 4. **Criar novo chat**
 5. **Enviar mensagem**: "Qual é a capital do Brasil?"
 6. **Verificar resposta gerada pelo modelo**
-
----
 
 ## 🔍 Troubleshooting
 
@@ -971,8 +955,6 @@ docker compose exec frontend curl http://backend:8000/health
 docker compose exec frontend env | grep BACKEND_URL
 ```
 
----
-
 ## 📊 Métricas de Desempenho
 
 ### Tempo de Inicialização
@@ -1002,7 +984,6 @@ docker compose exec frontend env | grep BACKEND_URL
 | Geração de Texto (50 tokens) | 500-1000ms |
 | Listar Chats | 50-100ms |
 
----
 
 ## 🔐 Considerações de Segurança
 
@@ -1034,8 +1015,6 @@ sudo ufw allow 8000/tcp  # Backend (opcional)
 sudo ufw deny 8080/tcp   # vLLM (manter interno)
 ```
 
----
-
 ## 📚 Referências e Documentação
 
 - [Docker Documentation](https://docs.docker.com/)
@@ -1044,8 +1023,6 @@ sudo ufw deny 8080/tcp   # vLLM (manter interno)
 - [Flask Documentation](https://flask.palletsprojects.com/)
 - [vLLM Documentation](https://vllm.readthedocs.io/)
 - [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
-
----
 
 ## 📝 Conclusão
 
@@ -1058,8 +1035,6 @@ Esta solução demonstra uma arquitetura robusta e escalável para aplicações 
 ✅ **Persistência** - Dados dos usuários e chats são mantidos entre reinicializações  
 
 A solução está pronta para uso em ambiente de desenvolvimento e pode ser adaptada para produção com as devidas configurações de segurança e monitoramento.
-
----
 
 **Data do Relatório**: 31 de Janeiro de 2026  
 **Versão**: 1.0  
