@@ -8,8 +8,6 @@ O conteúdo está organizado em três frentes principais:
 2. **Protótipo de chatbot com vLLM**: aplicação containerizada com frontend Flask, backend FastAPI e servidor LLM baseado em vLLM.
 3. **Stack de observabilidade**: ambiente com vLLM, Prometheus e Grafana para coleta e análise de métricas de inferência.
 
----
-
 ## Objetivo do material
 
 O objetivo é demonstrar como sair de uma execução simples de modelo LLM para uma arquitetura de **serving de LLMs mais próxima de produção**, considerando:
@@ -22,8 +20,6 @@ O objetivo é demonstrar como sair de uma execução simples de modelo LLM para 
 - análise de latência, throughput e uso de KV cache;
 - integração com aplicações reais de chat;
 - preparação para cenários de RAG, APIs institucionais e serviços multiusuário.
-
----
 
 ## Visão geral da arquitetura
 
@@ -42,7 +38,6 @@ flowchart LR
 
 Essa separação permite que a aplicação de negócio, o servidor de inferência e a camada de observabilidade evoluam de forma independente.
 
----
 
 ## Estrutura do repositório
 
@@ -88,7 +83,6 @@ vLLM-main/
         └── provisioning/
 ```
 
----
 
 ## 1. Laboratório didático: `lab/code`
 
@@ -131,7 +125,6 @@ O laboratório cobre os seguintes conceitos:
 - tuning de parâmetros de inferência;
 - criação de dashboard para acompanhamento de métricas.
 
----
 
 ## 2. Protótipo de aplicação de chat: `vllm-server-api-chat`
 
@@ -217,7 +210,6 @@ docker compose exec backend curl http://host.docker.internal:8080/v1/models
 - O servidor vLLM roda como container separado, usando GPU NVIDIA.
 - O projeto inclui documentação de troubleshooting para problemas de acesso à GPU.
 
----
 
 ## 3. Stack de monitoramento: `vllm-server-prometheus-grafana`
 
@@ -294,8 +286,6 @@ O arquivo `painel_grafana.md` inclui um dashboard JSON com painéis para:
 
 Esses painéis ajudam a identificar gargalos de desempenho e orientar decisões de tuning.
 
----
-
 ## Conceitos técnicos principais
 
 ### vLLM
@@ -328,7 +318,6 @@ Por isso, controlar o KV cache é essencial para evitar:
 - queda de throughput;
 - instabilidade em carga.
 
----
 
 ## Métricas importantes para avaliação
 
@@ -345,8 +334,6 @@ A solução destaca a importância de medir desempenho com métricas objetivas.
 | Waiting requests | Requisições aguardando na fila |
 | GPU KV cache usage | Pressão de uso do KV cache em VRAM |
 | VRAM usage | Uso total da memória da GPU |
-
----
 
 ## Exemplo de análise de métricas
 
@@ -367,8 +354,6 @@ Entre os pontos analisados estão:
 
 Esse tipo de análise é importante para transformar testes técnicos em evidências de engenharia.
 
----
-
 ## Parâmetros importantes de configuração do vLLM
 
 Alguns parâmetros aparecem nos scripts e no `docker-compose.yml` e são centrais para tuning:
@@ -386,7 +371,6 @@ Alguns parâmetros aparecem nos scripts e no `docker-compose.yml` e são centrai
 | `--enforce-eager` | Força execução eager, útil em alguns cenários de compatibilidade |
 | `--trust-remote-code` | Permite carregar código remoto do modelo, quando necessário |
 
----
 
 ## Pré-requisitos
 
@@ -407,7 +391,6 @@ Validação rápida da GPU no Docker:
 docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu22.04 nvidia-smi
 ```
 
----
 
 ## Fluxo recomendado de estudo
 
@@ -424,7 +407,6 @@ Uma sequência sugerida para usar este material é:
 9. Executar testes de carga.
 10. Documentar latência, throughput, uso de VRAM e gargalos encontrados.
 
----
 
 ## Recomendações de boas práticas
 
@@ -439,7 +421,6 @@ Uma sequência sugerida para usar este material é:
 - Documente configurações, modelo usado, versão da imagem Docker e parâmetros de inferência.
 - Faça testes de carga antes de considerar o ambiente pronto para produção.
 
----
 
 ## Cenários de uso
 
@@ -454,10 +435,9 @@ Este material pode ser usado em:
 - estudos de desempenho com GPU;
 - preparação para arquiteturas RAG em produção.
 
----
 
 ## Conclusão
 
-O arquivo `.zip` apresenta um conjunto prático e didático para compreender a hospedagem de modelos LLM com vLLM em cenários de alto desempenho. O material cobre desde conceitos fundamentais, como KV cache e PagedAttention, até protótipos completos com aplicação web, backend, servidor vLLM, métricas Prometheus e dashboards Grafana.
+Este repositório apresenta um conjunto prático e didático para compreender a hospedagem de modelos LLM com vLLM em cenários de alto desempenho. O material cobre desde conceitos fundamentais, como KV cache e PagedAttention, até protótipos completos com aplicação web, backend, servidor vLLM, métricas Prometheus e dashboards Grafana.
 
 A principal mensagem técnica do conteúdo é que **servir LLMs em produção não é apenas executar um modelo**, mas organizar uma arquitetura capaz de lidar com concorrência, uso eficiente de GPU, observabilidade, tuning e análise contínua de desempenho.
