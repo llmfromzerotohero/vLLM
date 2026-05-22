@@ -2,8 +2,6 @@
 
 O arquivo contém métricas de monitoramento no formato **Prometheus** exportadas pelo servidor vLLM em execução. Vou explicar organizadamente os principais indicadores:
 
----
-
 ### 📊 1. Contexto do Sistema
 ```text
 python_info{implementation="CPython",major="3",minor="12",patchlevel="3"} 1.0
@@ -15,8 +13,6 @@ process_start_time_seconds 1.77104238234e+09   # Iniciado em ~14/02/2026 10:39:4
 - **Memória**: ~1.1 GB residente (processo principal + overhead)
 - **Tempo ativo**: ~2 minutos no momento da coleta (baseado no timestamp)
 
----
-
 ### 🤖 2. Modelo em Execução
 ```text
 model_name="Qwen/Qwen3-4B-Instruct-2507-FP8"
@@ -24,8 +20,6 @@ model_name="Qwen/Qwen3-4B-Instruct-2507-FP8"
 - **Arquitetura**: Qwen3 de 4B de parâmetros
 - **Otimização**: Versão **FP8** (ponto flutuante 8-bit) → menor uso de VRAM e maior throughput
 - **Tipo**: Instrução-tuned (otimizado para chat/completions)
-
----
 
 ### 📈 3. Métricas de Requisições Processadas
 ```text
@@ -39,8 +33,6 @@ vllm:generation_tokens_total 1739.0
 | **Tokens de prompt** | 246 | Média de **41 tokens/requisição** no input |
 | **Tokens gerados** | 1,739 | Média de **290 tokens/requisição** na resposta |
 | **Razão compressão** | 7.1:1 | Cada token de input gerou ~7 tokens de output |
-
----
 
 ### ⚡ 4. Performance e Latência
 
@@ -70,8 +62,6 @@ vllm:e2e_request_latency_seconds_sum 41.36s / 6 requisições
 - Tempo total inclui: fila (quase zero) + prefill (~40ms) + decode (~6.86s)
 - Requisições mais longas (até 15s) correspondem às com maior geração de tokens
 
----
-
 ### 💾 5. Uso de Cache (KV Cache & Prefix Caching)
 
 #### a) KV Cache (Atenção)
@@ -93,8 +83,6 @@ vllm:prefix_cache_hits_total 80.0       # tokens reutilizados
 - Economia significativa: 80 tokens não precisaram ser recomputados
 - Útil em cenários com prompts similares ou sessões contínuas
 
----
-
 ### 📡 6. Métricas HTTP (API OpenAI)
 ```text
 http_requests_total{handler="/v1/models",method="GET",status="2xx"} 27.0
@@ -104,8 +92,6 @@ http_requests_total{handler="/v1/chat/completions",method="POST",status="2xx"} 6
 - **6 chamadas** para `/v1/chat/completions` → correspondem exatamente às 6 requisições processadas
 - Todas com status `2xx` → **100% de sucesso**
 
----
-
 ### 🧹 7. Coleta de Lixo (Garbage Collection)
 ```text
 python_gc_collections_total{generation="0"} 1974.0  # Coleções frequentes (geração 0)
@@ -114,8 +100,6 @@ python_gc_objects_uncollectable_total 0.0           # Nenhum vazamento de memór
 ```
 - Comportamento saudável da GC do Python
 - Zero objetos *uncollectable* → sem ciclos de referência problemáticos
-
----
 
 ### 📌 8. Insights e Recomendações
 
@@ -132,9 +116,7 @@ python_gc_objects_uncollectable_total 0.0           # Nenhum vazamento de memór
 2. **Ajustar `max-model-len`**: Se prompts raramente ultrapassam 2k tokens, reduzir libera blocos KV para mais requisições simultâneas
 3. **Monitorar `gpu_cache_usage_perc`**: Em carga real, manter abaixo de 80% evita *preempt* de requisições
 
----
-
-### 📊 Resumo Executivo
+### 📊 Resumo
 O servidor está operando de forma **estável e eficiente** com o modelo Qwen3-4B-FP8:
 - ✅ 6 requisições completadas com sucesso (100% taxa de sucesso)
 - ✅ Latência TTFT excelente (< 50ms)
@@ -143,4 +125,4 @@ O servidor está operando de forma **estável e eficiente** com o modelo Qwen3-4
 - ✅ Zero erros ou vazamentos de memória
 - ℹ️ Sistema ocioso no momento da coleta (KV cache com 0.12% uso)
 
-Métricas ideais para um ambiente de desenvolvimento/teste ou carga leve de produção. 🚀
+Métricas ideais para um ambiente de desenvolvimento/teste ou carga leve de produção.
