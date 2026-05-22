@@ -85,6 +85,7 @@ No Grafana, crie um dashboard e teste:
 > Os nomes exatos das séries podem variar por versão do vLLM. O caminho mais rápido é:
 > Grafana → Explore → Prometheus → digite `vllm` e veja o autocomplete das métricas disponíveis.
 
+Você pode usar o template (painel de monitoramento) pronto disponível neste [link](https://github.com/llmfromzerotohero/vLLM/blob/main/vllm-server-prometheus-grafana/painel_grafana.md)
 
 # Operação básica
 
