@@ -416,7 +416,7 @@ Ele foi feito para funcionar mesmo quando as métricas mudam entre prefixos `vll
 * Se algum painel aparecer “No data”, vá em **Explore** e pesquise por `vllm` para ver os nomes exatos expostos pela sua versão do container. O vLLM expõe métricas no `/metrics` do servidor OpenAI-like e a lista pode evoluir entre versões. ([docs.vllm.ai][2])
 * O painel de **p95** depende de histogram (`*_bucket`). Se sua build não estiver expondo os histograms, o `curl http://localhost:8000/metrics` vai revelar isso. ([docs.vllm.ai][2])
 
-Se você quiser, eu também posso:
+Sugestões:
 
 * adicionar painéis de **queue time**, **prefill time** e **inference time** (histograms como `request_queue_time_seconds`, `request_prefill_time_seconds`, etc.), que são excelentes para explicar TTFT vs fila vs GPU. ([docs.redhat.com][1])
 
