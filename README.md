@@ -8,6 +8,10 @@ O conteúdo está organizado em três frentes principais:
 2. **Protótipo de chatbot com vLLM**: aplicação containerizada com frontend Flask, backend FastAPI e servidor LLM baseado em vLLM.
 3. **Stack de observabilidade**: ambiente com vLLM, Prometheus e Grafana para coleta e análise de métricas de inferência.
 
+- Apresentação sobre o vLLM neste [link](https://github.com/llmfromzerotohero/vLLM/blob/main/Apresentacao_vLLM_Alto_Desempenho.pdf)
+- Apresentação sobre o Prometheus neste [link](https://github.com/llmfromzerotohero/vLLM/blob/main/Apresentacao_Prometheus_Observabilidade_LLM_IA_Generativa.pdf)
+- Apresentação sobre o Grafana  neste [link](https://github.com/llmfromzerotohero/vLLM/blob/main/Apresentacao_Grafana_Observabilidade_LLM_IA_Generativa.pdf)
+
 ## Objetivo do material
 
 O objetivo é demonstrar como sair de uma execução simples de modelo LLM para uma arquitetura de **serving de LLMs mais próxima de produção**, considerando:
