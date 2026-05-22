@@ -2,6 +2,8 @@
 
 Solução de Aplicação de IA Generativa (chatbot) integrado a API e servidor de LLM (vLLM). Esta solução é implementada em um ambiente "containerizado" docker, onde existem 3 containers: container de UI, container de API e container de um servidor LLM baseado no vLLM. 
 
+Mais detalhes sobre o projeto neste [link](https://github.com/llmfromzerotohero/vLLM/blob/main/vllm-server-api-chat/docs/report.md)
+
 ## Estrutura do projeto
 
 ```bash
