@@ -31,7 +31,7 @@ vllm:generation_tokens_total 1739.0
 |---------|-------|---------------|
 | **Requisições bem-sucedidas** | 6 | Todas finalizadas com `stop` (nenhum truncamento por `length` ou `abort`) |
 | **Tokens de prompt** | 246 | Média de **41 tokens/requisição** no input |
-| **Tokens gerados** | 1,739 | Média de **290 tokens/requisição** na resposta |
+| **Tokens gerados** | 1739 | Média de **290 tokens/requisição** na resposta |
 | **Razão compressão** | 7.1:1 | Cada token de input gerou ~7 tokens de output |
 
 ### ⚡ 4. Performance e Latência
@@ -48,7 +48,7 @@ vllm:time_to_first_token_seconds_count 6
 #### b) Tempo por Token de Saída (Decode)
 ```text
 vllm:time_per_output_token_seconds_sum 41.11s
-vllm:time_per_output_token_seconds_count 1,733 tokens
+vllm:time_per_output_token_seconds_count 1733 tokens
 → Média: **23.7 ms/token** → **~42 tokens/s**
 ```
 - **Bom throughput**: 42 tokens/s é competitivo para um modelo de 4B em GPU consumer
