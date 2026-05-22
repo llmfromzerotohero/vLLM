@@ -15,7 +15,7 @@ docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu22.04 nvidia-smi
 
 ## Passo 2 — Subir a stack
 
-No diretório `stack-vllm-monitoring/`:
+No diretório raiz `vllm-server-prometheus-grafana/`:
 
 ```bash
 docker compose up -d
