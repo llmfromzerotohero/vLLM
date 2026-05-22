@@ -1,6 +1,6 @@
-# vllm-sever-prometheus-grafana
+# vllm-server-prometheus-grafana
 
-Passo a passo para implantar e executar um painel de monitoramento de um servidor de Modelo LLM hospedado via vLLM. 
+Passo a passo para implantar e executar um painel de monitoramento de um servidor de Modelo LLM hospedado via [vLLM](https://vllm.ai) usando as ferramentas [Prometheus](https://prometheus.io) e [Grafana](https://grafana.com). 
 
 ## Passo 1 — Pré-requisitos no host
 
