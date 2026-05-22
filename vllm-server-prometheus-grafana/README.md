@@ -116,7 +116,7 @@ docker compose down -v
 
 ## Dicas de estabilidade (inferência local)
 
-* Se der **OOM**, reduza:
+* Se der **Out of Memory (OOM)**, reduza:
 
   * `GPU_MEM_UTIL` (ex.: 0.80)
   * `MAX_MODEL_LEN` (ex.: 2048)
