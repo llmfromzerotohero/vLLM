@@ -444,4 +444,4 @@ Este material pode ser usado em:
 
 Este repositório apresenta um conjunto prático e didático para compreender a hospedagem de modelos LLM com vLLM em cenários de alto desempenho. O material cobre desde conceitos fundamentais, como KV cache e PagedAttention, até protótipos completos com aplicação web, backend, servidor vLLM, métricas Prometheus e dashboards Grafana.
 
-A principal mensagem técnica do conteúdo é que **servir LLMs em produção não é apenas executar um modelo**, mas organizar uma arquitetura capaz de lidar com concorrência, uso eficiente de GPU, observabilidade, tuning e análise contínua de desempenho.
+A principal mensagem técnica do conteúdo é que **servir LLMs em produção não é apenas executar um modelo**, mas organizar uma arquitetura capaz de lidar com concorrência, uso eficiente de GPU, observabilidade, tuning e análise contínua de desempenho. Além disso, apresenta os conceitos básicos de observabilidade e monitoramento usando o Prometheus (coletor de métricas) e Grafana (Dashboar de Monitoramento) integrado ao Prometheus que coleta as métricas expostas pelo vLLM.
